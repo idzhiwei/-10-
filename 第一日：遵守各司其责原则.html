@@ -19,6 +19,13 @@
         body {
             padding: 10px;
             box-sizing: border-box;
+            transition: all 1s;
+        }
+
+        body.night {
+            background-color: black;
+            color: white;
+            transition: all 1s;
         }
 
         div.pic img {
@@ -30,9 +37,12 @@
             float: right;
         }
 
-        body.night {
-            background-color: black;
-            color: white;
+        #modeBtn::after {
+            content: '🌞';
+        }
+
+        body.night #modeBtn::after {
+            content: '🌜';
         }
     </style>
 </head>
@@ -55,15 +65,18 @@
         </div>
     </main>
     <script>
+        /*
+        * 元素的class属性不仅仅只是为了给CSS提供类选择器，还能表示元素的业务状态。
+        * 这样，我们就可以将这些业务状态对应的展示样式交由CSS处理，而JS只需要处理状态的切换即可，从而保证了各司其职的原则，
+        * 使得我们的代码既能体现业务的需求，也便于将来的维护和扩展。
+        */
         const btn = document.getElementById('modeBtn');
         btn.addEventListener('click', (e) => {
             const body = document.body;
             if (body.className !== 'night') {
                 body.className = 'night';
-                e.target.innerHTML = '🌜';
             } else {
                 body.className = '';
-                e.target.innerHTML = '🌞';
             }
         });
     </script>
