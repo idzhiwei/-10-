@@ -29,6 +29,11 @@
             font-size: 2rem;
             float: right;
         }
+
+        body.night {
+            background-color: black;
+            color: white;
+        }
     </style>
 </head>
 
@@ -53,13 +58,11 @@
         const btn = document.getElementById('modeBtn');
         btn.addEventListener('click', (e) => {
             const body = document.body;
-            if (e.target.innerHTML === '🌞') {
-                body.style.backgroundColor = 'black';
-                body.style.color = 'white';
+            if (body.className !== 'night') {
+                body.className = 'night';
                 e.target.innerHTML = '🌜';
             } else {
-                body.style.backgroundColor = 'white';
-                body.style.color = 'black';
+                body.className = '';
                 e.target.innerHTML = '🌞';
             }
         });
